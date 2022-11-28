@@ -1,8 +1,6 @@
 <?php
 session_start();
-//var_dump($_POST);
-//var_dump($_GET);
-$ingles = "0";
+$ingles = (isset($_COOKIE["c_ingles"]))?$_COOKIE["c_ingles"]:"0";
 if(!isset($_SESSION["s_usuario"]) && !isset($_SESSION["s_clave"])){
     if(isset($_POST["usuario"]) && isset($_POST["clave"]) ){
         $_SESSION["s_usuario"] = $_POST["usuario"];
@@ -29,10 +27,8 @@ if(isset($_COOKIE["c_ingles"]) && !isset($_GET["ingles"])){
     $ingles = $_COOKIE["c_ingles"];
 }else{
     $ingles = (isset($_GET["ingles"]))?$_GET["ingles"]:"0";
-    //$ingles =  $_GET["ingles"];
 }
 if(isset($_COOKIE["c_ingles"]) && isset($_GET["ingles"])){
-    //$_COOKIE["c_ingles"] = $_GET["ingles"];
     setcookie("c_ingles",$_GET["ingles"],0);
 }
 
@@ -47,12 +43,7 @@ $myfile = fopen("categorias_es.txt", "r") or die("Unable to open file!");
 while(!feof($myfile)){
     $categoriasES .=  fgets($myfile) . "<br>";
 }
-//echo $categoriasES;
 fclose($myfile);
-/*$ingles = "0";
-if(isset($_GET["ingles"])){
-    $ingles = $_GET["ingles"];
-}*/
 ?>
 <HTML>
     <head></head>
